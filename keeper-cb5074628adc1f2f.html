@@ -246,6 +246,14 @@ table.t tr.tot td{border-top:2px solid var(--hair2);font-weight:700;}
   color:rgba(255,255,255,.55);animation:spPulse 2.6s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){ #splash2 .s2-e{animation:none;} }
 
+/* Player page portrait */
+.pt{display:flex;justify-content:center;margin:0 auto 14px;}
+.pt-img{display:block;height:min(300px,58vw);width:auto;max-width:90%;object-fit:contain;
+  animation:spIn .7s cubic-bezier(.22,.61,.36,1) both;}
+.pt-ini{width:96px;height:96px;border-radius:50%;background:var(--navy);color:var(--gold-pale);
+  display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:34px;
+  letter-spacing:.04em;box-shadow:inset 0 0 0 1px rgba(217,200,154,.55),inset 0 0 0 4px var(--navy),inset 0 0 0 5px rgba(217,200,154,.25);}
+
 </style>
 </head>
 <body>
@@ -264,10 +272,12 @@ table.t tr.tot td{border-top:2px solid var(--hair2);font-weight:700;}
 /* FF Tour. Built from the NTRC app's bones: one page, ivory/navy/gold, a team edition
    that only reads, a Keeper edition that edits and publishes data.json to GitHub. */
 const CFG = {"app_name": "FF Tour", "short_name": "FF Tour", "monogram": "FF", "tagline": "Four players. One trophy. No mercy.", "organiser": "Justin Lawrence", "github_owner": "jekylgithub", "github_repo": "FFTOUR", "live_url": "https://jekylgithub.github.io/FFTOUR/", "scoring_note": "Stableford points, every round counts. Most points over the trip wins the tour; a tie goes to the better last round, then the better best round.", "next": {"name": "", "venue": "", "start": "", "end": ""}};
-const BASE_DOC = {"players": [{"id": "jt", "name": "Justin", "nick": "JT", "hcp": null}, {"id": "jy", "name": "Jon", "nick": "JY", "hcp": null}, {"id": "pshank", "name": "Phil", "nick": "P-Shank", "hcp": null}, {"id": "mgrind", "name": "Mike", "nick": "M-Grind", "hcp": null}, {"id": "marky", "name": "Mark", "nick": "Marky", "hcp": null, "guest": true}], "tours": [{"id": "2022-belfry", "name": "The Belfry 2022", "venue": "The Belfry", "start": "2022", "end": "2022", "format": "Pairs matchplay each day, Stableford overall, longest drive", "source": "Belfry 2022.xlsx", "rounds": [{"n": 1, "date": "", "course": "Derby", "tee": "13:00", "pts": {"jy": 31, "jt": 31, "pshank": 30, "mgrind": 31}, "pairs": {"a": ["jt", "jy"], "b": ["mgrind", "pshank"], "res": "b"}, "ld": ["jt"]}, {"n": 2, "date": "", "course": "Brabazon", "tee": "11:50", "pts": {"jy": 21, "jt": 34, "pshank": 28, "mgrind": 14}, "pairs": {"a": ["pshank", "jy"], "b": ["mgrind", "jt"], "res": "b"}, "ld": ["mgrind"]}, {"n": 3, "date": "", "course": "PGA National", "tee": "09:55", "pts": {"jy": 23, "jt": 24, "pshank": 30, "mgrind": 26}, "pairs": {"a": ["mgrind", "jy"], "b": ["jt", "pshank"], "res": "h"}, "ld": ["mgrind"]}], "stake": 56, "money": {"jy": -46, "jt": 62, "pshank": -26, "mgrind": 10}}, {"id": "2023-algarve", "name": "The Algarve 2023", "venue": "The Algarve", "start": "2023-04", "end": "2023-04", "format": "Stableford only: front nine, back nine and overall each day, €1 a hazard to the kitty", "source": "Tour Algarve 2023.xlsx", "alias": "The Beer Belly 5", "notes": "Five-man tour: Mark (Marky) came along. JT shows 0 for Day 3 and is treated here as not playing it.", "rounds": [{"n": 1, "date": "", "course": "O'Connor", "tee": "13:48", "pts": {"jt": 33, "jy": 24, "pshank": 33, "marky": 31, "mgrind": 32}, "f9": {"jt": 19, "jy": 14, "pshank": 19, "marky": 15, "mgrind": 21}, "hazards": {"jt": 10, "jy": 7, "pshank": 11, "marky": 5, "mgrind": 13}}, {"n": 2, "date": "", "course": "Faldo", "tee": "15:18", "pts": {"jt": 14, "jy": 24, "pshank": 26, "marky": 14, "mgrind": 25}, "f9": {"jt": 10, "jy": 14, "pshank": 15, "marky": 7, "mgrind": 12}, "hazards": {"jt": 10, "jy": 8, "pshank": 8, "marky": 3, "mgrind": 10}}, {"n": 3, "date": "", "course": "Palmeras", "tee": "09:36", "pts": {"jy": 28, "pshank": 30, "marky": 30, "mgrind": 33}, "f9": {"jy": 17, "pshank": 17, "marky": 17, "mgrind": 20}, "hazards": {"jt": 14, "jy": 4, "pshank": 7, "marky": 2, "mgrind": 4}}], "stake": 70, "currency": "€", "money": {"jt": -104, "jy": -89, "pshank": 4, "marky": -30, "mgrind": 103}}, {"id": "2024-east-sussex", "name": "East Sussex 2024", "venue": "East Sussex", "start": "2024", "end": "2024", "format": "Pairs matchplay each day, Stableford overall, longest drive, nearest the pin (two a day), £2 snakes", "source": "East Sussex 2024.xlsx", "winner": ["jt", "mgrind"], "notes": "JT and M-Grind finished level on 51 and split the individual pot. The sheet names JT as Singles Winner.", "rounds": [{"n": 1, "date": "", "course": "West Course", "tee": "13:30", "pts": {"jy": 25, "jt": 26, "pshank": 20, "mgrind": 19}, "pairs": {"a": ["jt", "jy"], "b": ["mgrind", "pshank"], "res": "a"}, "ld": ["pshank"], "np": ["jy", "jy"]}, {"n": 2, "date": "", "course": "East Course", "tee": "14:00", "pts": {"jy": 23, "jt": 25, "pshank": 23, "mgrind": 32}, "pairs": {"a": ["jt", "mgrind"], "b": ["pshank", "jy"], "res": "h"}, "ld": ["jy"], "np": ["pshank", "jt"]}], "stake": 52, "money": {"jy": 2, "jt": 26, "pshank": -26, "mgrind": -2}}], "next": {"name": "", "venue": "", "start": "", "end": ""}};          // the history files, baked in at build time
+const BASE_DOC = {"players": [{"id": "jt", "name": "Justin", "nick": "JT", "hcp": null}, {"id": "jy", "name": "Jon", "nick": "JY", "hcp": null}, {"id": "pshank", "name": "Phil", "nick": "P-Shank", "hcp": null}, {"id": "mgrind", "name": "Mike", "nick": "M-Grind", "hcp": null}, {"id": "marky", "name": "Mark", "nick": "Marky", "hcp": null, "guest": true}], "tours": [{"id": "2022-belfry", "name": "The Belfry 2022", "venue": "The Belfry", "start": "2022", "end": "2022", "format": "Pairs matchplay each day, Stableford overall, longest drive", "source": "Belfry 2022.xlsx", "rounds": [{"n": 1, "date": "", "course": "Derby", "tee": "13:00", "pts": {"jy": 31, "jt": 31, "pshank": 30, "mgrind": 31}, "pairs": {"a": ["jt", "jy"], "b": ["mgrind", "pshank"], "res": "b"}, "ld": ["jt"]}, {"n": 2, "date": "", "course": "Brabazon", "tee": "11:50", "pts": {"jy": 21, "jt": 34, "pshank": 28, "mgrind": 14}, "pairs": {"a": ["pshank", "jy"], "b": ["mgrind", "jt"], "res": "b"}, "ld": ["mgrind"]}, {"n": 3, "date": "", "course": "PGA National", "tee": "09:55", "pts": {"jy": 23, "jt": 24, "pshank": 30, "mgrind": 26}, "pairs": {"a": ["mgrind", "jy"], "b": ["jt", "pshank"], "res": "h"}, "ld": ["mgrind"]}], "stake": 56, "money": {"jy": -46, "jt": 62, "pshank": -26, "mgrind": 10}}, {"id": "2023-algarve", "name": "The Algarve 2023", "venue": "The Algarve", "start": "2023-04", "end": "2023-04", "format": "Stableford only: front nine, back nine and overall each day, €1 a hazard to the kitty", "source": "Tour Algarve 2023.xlsx", "alias": "The Beer Belly 5", "notes": "Five-man tour: Mark (Marky) came along. JT shows 0 for Day 3 and is treated here as not playing it.", "rounds": [{"n": 1, "date": "", "course": "O'Connor", "tee": "13:48", "pts": {"jt": 33, "jy": 24, "pshank": 33, "marky": 31, "mgrind": 32}, "f9": {"jt": 19, "jy": 14, "pshank": 19, "marky": 15, "mgrind": 21}, "hazards": {"jt": 10, "jy": 7, "pshank": 11, "marky": 5, "mgrind": 13}}, {"n": 2, "date": "", "course": "Faldo", "tee": "15:18", "pts": {"jt": 14, "jy": 24, "pshank": 26, "marky": 14, "mgrind": 25}, "f9": {"jt": 10, "jy": 14, "pshank": 15, "marky": 7, "mgrind": 12}, "hazards": {"jt": 10, "jy": 8, "pshank": 8, "marky": 3, "mgrind": 10}}, {"n": 3, "date": "", "course": "Palmeras", "tee": "09:36", "pts": {"jy": 28, "pshank": 30, "marky": 30, "mgrind": 33}, "f9": {"jy": 17, "pshank": 17, "marky": 17, "mgrind": 20}, "hazards": {"jt": 14, "jy": 4, "pshank": 7, "marky": 2, "mgrind": 4}}], "stake": 70, "currency": "€", "money": {"jt": -104, "jy": -89, "pshank": 4, "marky": -30, "mgrind": 103}}, {"id": "2024-east-sussex", "name": "East Sussex 2024", "venue": "East Sussex", "start": "2024", "end": "2024", "format": "Pairs matchplay each day, Stableford overall, longest drive, nearest the pin (two a day), £2 snakes", "source": "East Sussex 2024.xlsx", "winner": ["jt", "mgrind"], "notes": "JT and M-Grind finished level on 51 and split the individual pot. The sheet names JT as Singles Winner.", "rounds": [{"n": 1, "date": "", "course": "West Course", "tee": "13:30", "pts": {"jy": 25, "jt": 26, "pshank": 20, "mgrind": 19}, "pairs": {"a": ["jt", "jy"], "b": ["mgrind", "pshank"], "res": "a"}, "ld": ["pshank"], "np": ["jy", "jy"]}, {"n": 2, "date": "", "course": "East Course", "tee": "14:00", "pts": {"jy": 23, "jt": 25, "pshank": 23, "mgrind": 32}, "pairs": {"a": ["jt", "mgrind"], "b": ["pshank", "jy"], "res": "h"}, "ld": ["jy"], "np": ["pshank", "jt"]}], "stake": 52, "money": {"jy": 2, "jt": 26, "pshank": -26, "mgrind": -2}}, {"id": "2026-algarve", "name": "Algarve 2026", "venue": "Vilamoura", "start": "2026-04-26", "end": "2026-04-29", "status": "done", "format": "Wolf (pot paid out per wolf point), Stableford singles (£20 a man: £50 winner, £10 runner-up), pairs, nearest the pins (£5 a man), snakes", "source": "Jonny's WhatsApp, 6 Nov 2026: no scorecards were kept", "notes": "Stayed at Pestana Vila Sol. No round-by-round scores, so this tour counts for titles and the honours board, not for points averages.", "players": ["jt", "jy", "pshank", "mgrind"], "winner": ["jy"], "runnerUp": ["pshank"], "pairsWinners": ["mgrind", "jy"], "rounds": [{"n": 1, "date": "", "course": "Old Course", "tee": "15:24", "pts": {}}, {"n": 2, "date": "", "course": "Millennium", "tee": "09:00", "pts": {}}, {"n": 3, "date": "", "course": "Pinhal", "tee": "13:50", "pts": {}}], "results": [{"title": "Wolf", "sub": "£100 pot over 49 wolf points (the points are worked back from the payouts)", "rows": [["mgrind", "£38", "19 pts"], ["pshank", "£32", "16 pts"], ["jy", "£20", "10 pts"], ["jt", "£8", "4 pts"]]}, {"title": "Nearest the pins", "sub": "£5 a man", "rows": [["pshank", "£12", "end of day one"], ["jy", "£4", "end of day one"], ["jt", "£4", "end of day one"], ["jy", "×3", "pins won"], ["pshank", "×2", "pins won"]]}, {"title": "Snakes", "sub": "", "rows": [["pshank", "−£45", ""]]}], "lore": {"pshank": ["Runner-up in the Algarve, 2026. Twenty of those points were bought, not made. Nobody has asked for a receipt.", "−£45 in snakes in the Algarve. P-Shank's putter has its own entry in the accounts.", "Bought 20 points on tour. The only man ever to pay for Stableford twice."], "jy": ["Singles champion and half of the winning pair, Algarve 2026. And he wrote up the results himself. Funny that."], "jt": ["4 wolf points in three rounds in the Algarve. £8 back. A lone wolf in the sense that nobody wanted to partner him."], "mgrind": ["Won the wolf, won the pairs, paid nothing into the Stableford. M-Grind's Algarve: all profit, no risk."]}}], "next": {"name": "", "venue": "", "start": "", "end": ""}};          // the history files, baked in at build time
 const BUILT_IN_PUB = null;      // the live data.json as it stood at build time (hosted pages only)
 const READONLY = false;
-const BUILD = "2026-11-06 20:01";
+const BUILD = "2026-11-07 01:16";
+const PORTRAITS = {};     // id -> {f, s, v}: see build_portraits.py
+const PORT_BASE = "portraits/";
 const MONO = "<svg class=\"sp-mono\" role=\"img\" aria-label=\"MJJP\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"150.0 188.0 700.0 624.0\"><path d=\"M762.14,411.98 L767.69,409.47 L772.98,406.72 L778.00,403.72 L782.76,400.49 L787.26,397.02 L791.48,393.32 L795.41,389.41 L799.05,385.28 L802.39,380.93 L805.45,376.37 L808.21,371.59 L810.69,366.59 L812.87,361.38 L814.76,355.96 L816.36,350.31 L817.67,344.46 L818.69,338.38 L819.42,332.09 L819.85,325.59 L820.00,318.86 L819.85,312.55 L819.41,306.43 L818.68,300.51 L817.65,294.77 L816.33,289.23 L814.72,283.88 L812.81,278.73 L810.61,273.76 L808.12,268.99 L805.33,264.41 L802.25,260.02 L798.88,255.83 L795.21,251.83 L791.25,248.02 L786.99,244.40 L782.47,241.00 L777.68,237.83 L772.64,234.90 L767.34,232.20 L761.79,229.73 L755.98,227.50 L749.92,225.51 L743.60,223.75 L737.03,222.22 L730.19,220.93 L723.11,219.87 L715.76,219.05 L708.17,218.47 L700.31,218.11 L692.20,218.00 L644.16,218.00 L644.16,224.33 L690.62,224.33 L696.68,224.44 L702.50,224.76 L708.05,225.29 L713.36,226.04 L718.40,227.00 L723.19,228.18 L727.72,229.57 L732.00,231.17 L736.02,232.98 L739.79,235.01 L743.30,237.26 L746.55,239.71 L749.55,242.38 L752.29,245.27 L754.78,248.36 L757.06,251.65 L759.18,255.12 L761.15,258.77 L762.96,262.59 L764.61,266.58 L766.10,270.75 L767.44,275.10 L768.62,279.63 L769.64,284.33 L770.51,289.20 L771.21,294.25 L771.76,299.48 L772.16,304.89 L772.39,310.47 L772.47,316.22 L772.38,323.14 L772.12,329.80 L771.69,336.21 L771.08,342.36 L770.30,348.26 L769.34,353.91 L768.22,359.30 L766.91,364.44 L765.44,369.33 L763.79,373.96 L761.96,378.34 L759.97,382.47 L757.79,386.34 L755.45,389.96 L752.93,393.32 L750.22,396.46 L747.31,399.37 L744.19,402.07 L740.86,404.55 L737.32,406.82 L733.58,408.87 L729.63,410.71 L725.48,412.33 L721.12,413.73 L716.55,414.92 L711.78,415.89 L706.80,416.65 L701.61,417.19 L696.22,417.51 L690.62,417.62 L644.16,417.62 L644.16,423.95 L692.20,423.95 L700.38,423.83 L708.29,423.48 L715.94,422.88 L723.33,422.04 L730.46,420.96 L737.32,419.64 L743.92,418.09 L750.26,416.29 L756.33,414.26 L762.14,411.98Z M184.22,222.22 L208.52,222.22 L209.90,222.23 L211.24,222.26 L212.54,222.32 L213.79,222.39 L215.00,222.49 L216.16,222.60 L217.28,222.74 L218.36,222.90 L219.39,223.08 L220.37,223.28 L221.31,223.50 L222.21,223.74 L223.06,224.01 L223.86,224.29 L224.62,224.60 L225.36,224.93 L226.07,225.30 L226.77,225.71 L227.45,226.15 L228.12,226.62 L228.76,227.13 L229.40,227.68 L230.01,228.26 L230.61,228.88 L231.20,229.53 L231.76,230.21 L232.31,230.93 L232.85,231.69 L233.36,232.48 L233.87,233.31 L233.87,550.17 L233.85,551.83 L233.81,553.41 L233.74,554.93 L233.64,556.38 L233.51,557.77 L233.36,559.08 L233.18,560.33 L232.96,561.51 L232.73,562.62 L232.46,563.66 L232.16,564.64 L231.84,565.55 L231.49,566.39 L231.11,567.16 L230.70,567.86 L230.25,568.51 L229.74,569.13 L229.18,569.71 L228.56,570.25 L227.88,570.76 L227.15,571.24 L226.36,571.68 L225.51,572.09 L224.61,572.45 L223.66,572.79 L222.64,573.09 L221.57,573.35 L220.45,573.58 L219.26,573.78 L218.02,573.93 L180.00,578.16 L180.00,582.38 L295.65,582.38 L295.65,578.16 L258.16,573.93 L256.92,573.78 L255.74,573.58 L254.61,573.35 L253.54,573.09 L252.53,572.79 L251.57,572.45 L250.67,572.09 L249.82,571.68 L249.03,571.24 L248.30,570.76 L247.62,570.25 L247.00,569.71 L246.44,569.13 L245.93,568.51 L245.48,567.86 L245.08,567.16 L244.70,566.39 L244.34,565.55 L244.02,564.64 L243.72,563.66 L243.46,562.62 L243.22,561.51 L243.01,560.33 L242.82,559.08 L242.67,557.77 L242.54,556.38 L242.44,554.93 L242.37,553.41 L242.33,551.83 L242.32,550.17 L242.32,251.79 L244.43,251.79 L386.49,590.83 L391.77,590.83 L519.04,252.32 L521.15,252.32 L521.15,468.51 L521.15,473.07 L521.15,491.29 L521.15,564.16 L521.15,569.63 L521.15,584.20 L521.15,592.94 L521.10,597.32 L520.97,601.58 L520.74,605.72 L520.42,609.75 L520.01,613.66 L519.50,617.45 L518.91,621.12 L518.22,624.68 L517.44,628.12 L516.57,631.44 L515.61,634.64 L514.56,637.73 L513.42,640.70 L512.18,643.55 L510.85,646.28 L509.45,648.87 L507.99,651.28 L506.47,653.51 L504.89,655.56 L503.25,657.43 L501.56,659.13 L499.80,660.64 L497.99,661.98 L496.12,663.14 L494.19,664.12 L492.20,664.92 L490.15,665.55 L488.04,665.99 L485.88,666.26 L483.66,666.35 L481.34,666.27 L479.19,666.02 L477.19,665.61 L475.36,665.04 L473.68,664.30 L472.16,663.39 L470.81,662.33 L469.61,661.09 L468.57,659.70 L467.70,658.14 L466.98,656.41 L466.42,654.52 L466.02,652.47 L465.78,650.25 L465.70,647.87 L466.23,632.55 L466.20,631.09 L466.12,629.68 L466.00,628.31 L465.82,626.98 L465.58,625.69 L465.30,624.44 L464.96,623.24 L464.58,622.07 L464.14,620.96 L463.65,619.88 L463.10,618.84 L462.51,617.85 L461.86,616.90 L461.17,615.99 L460.42,615.13 L459.62,614.31 L458.79,613.55 L457.91,612.84 L456.98,612.20 L456.02,611.60 L455.01,611.07 L453.96,610.59 L452.87,610.17 L451.74,609.80 L450.56,609.49 L449.34,609.24 L448.08,609.04 L446.78,608.90 L445.44,608.82 L444.05,608.79 L442.73,608.82 L441.44,608.90 L440.19,609.04 L438.98,609.24 L437.80,609.49 L436.65,609.80 L435.55,610.17 L434.47,610.59 L433.43,611.07 L432.43,611.60 L431.46,612.20 L430.53,612.84 L429.63,613.55 L428.77,614.31 L427.94,615.13 L427.16,615.99 L426.43,616.89 L425.75,617.83 L425.13,618.81 L424.57,619.82 L424.05,620.87 L423.60,621.96 L423.19,623.09 L422.84,624.25 L422.54,625.45 L422.30,626.69 L422.11,627.97 L421.98,629.28 L421.90,630.63 L421.87,632.02 L421.94,634.32 L422.16,636.57 L422.52,638.76 L423.03,640.91 L423.69,643.00 L424.49,645.04 L425.43,647.02 L426.52,648.96 L427.76,650.85 L429.14,652.68 L430.67,654.46 L432.35,656.19 L434.16,657.87 L436.13,659.49 L438.24,661.07 L440.46,662.57 L442.75,663.96 L445.13,665.25 L447.57,666.44 L450.09,667.52 L452.69,668.50 L455.36,669.38 L458.10,670.16 L460.93,670.83 L463.82,671.40 L466.79,671.86 L469.84,672.22 L472.96,672.48 L476.16,672.64 L479.43,672.69 L482.03,672.65 L484.60,672.53 L487.16,672.34 L489.70,672.07 L492.22,671.72 L494.72,671.29 L497.21,670.79 L499.67,670.21 L502.12,669.55 L504.54,668.81 L506.95,668.00 L509.34,667.11 L511.71,666.14 L514.06,665.10 L516.40,663.97 L518.69,662.78 L520.92,661.53 L523.09,660.22 L525.20,658.86 L527.25,657.43 L529.24,655.95 L531.17,654.40 L533.03,652.80 L534.84,651.14 L536.58,649.42 L538.27,647.64 L539.89,645.81 L541.45,643.91 L542.95,641.96 L544.39,639.95 L545.63,638.09 L546.82,636.18 L547.97,634.21 L549.06,632.19 L550.11,630.12 L551.10,627.99 L552.05,625.81 L552.95,623.57 L553.80,621.28 L554.60,618.94 L555.35,616.54 L556.05,614.09 L556.70,611.58 L557.30,609.02 L557.85,606.41 L558.36,603.71 L558.84,600.87 L559.28,597.91 L559.68,594.82 L560.05,591.60 L560.39,588.24 L560.69,584.77 L560.73,584.20 L561.81,584.20 L561.81,573.27 L561.81,569.63 L561.81,564.16 L561.81,552.28 L561.81,491.29 L561.81,473.07 L561.81,468.51 L561.81,226.45 L561.81,224.33 L601.90,224.33 L601.90,226.45 L601.90,564.16 L601.90,569.63 L601.90,582.38 L601.90,583.38 L601.90,584.20 L601.90,702.26 L601.85,706.64 L601.71,710.90 L601.48,715.04 L601.16,719.07 L600.75,722.97 L600.25,726.76 L599.65,730.44 L598.97,733.99 L598.19,737.43 L597.32,740.75 L596.36,743.96 L595.31,747.04 L594.16,750.01 L592.93,752.86 L591.60,755.60 L590.20,758.19 L588.73,760.59 L587.22,762.82 L585.64,764.87 L584.00,766.75 L582.30,768.44 L580.55,769.96 L578.74,771.30 L576.86,772.46 L574.93,773.44 L572.94,774.24 L570.90,774.86 L568.79,775.31 L566.63,775.58 L564.40,775.67 L562.09,775.58 L559.93,775.34 L557.94,774.93 L556.10,774.35 L554.43,773.61 L552.91,772.71 L551.55,771.64 L550.36,770.41 L549.32,769.01 L548.44,767.45 L547.72,765.73 L547.16,763.84 L546.77,761.78 L546.53,759.57 L546.45,757.18 L546.97,741.87 L546.95,740.41 L546.87,739.00 L546.74,737.62 L546.56,736.29 L546.33,735.00 L546.04,733.76 L545.71,732.55 L545.32,731.39 L544.88,730.27 L544.39,729.19 L543.85,728.16 L543.26,727.17 L542.61,726.22 L541.91,725.31 L541.17,724.44 L540.37,723.62 L539.53,722.86 L538.65,722.16 L537.73,721.51 L536.76,720.92 L535.76,720.39 L534.71,719.91 L533.62,719.48 L532.48,719.12 L531.31,718.81 L530.09,718.55 L528.83,718.36 L527.53,718.22 L526.18,718.13 L524.79,718.10 L523.47,718.13 L522.19,718.22 L520.94,718.36 L519.72,718.55 L518.54,718.81 L517.40,719.12 L516.29,719.48 L515.22,719.91 L514.18,720.39 L513.18,720.92 L512.21,721.51 L511.27,722.16 L510.38,722.86 L509.51,723.62 L508.69,724.44 L507.90,725.30 L507.18,726.21 L506.50,727.14 L505.88,728.12 L505.31,729.14 L504.80,730.19 L504.34,731.28 L503.94,732.40 L503.59,733.57 L503.29,734.77 L503.05,736.01 L502.86,737.28 L502.72,738.60 L502.64,739.95 L502.61,741.34 L502.69,743.64 L502.91,745.88 L503.27,748.08 L503.78,750.22 L504.43,752.31 L505.23,754.35 L506.18,756.34 L507.27,758.28 L508.51,760.16 L509.89,761.99 L511.42,763.78 L513.09,765.51 L514.91,767.18 L516.88,768.81 L518.99,770.39 L521.21,771.88 L521.90,772.30 L523.50,773.28 L525.87,774.57 L528.32,775.76 L530.84,776.84 L533.43,777.82 L536.10,778.70 L538.85,779.47 L541.67,780.14 L544.57,780.71 L547.54,781.18 L550.59,781.54 L553.71,781.80 L556.90,781.95 L560.18,782.00 L562.77,781.96 L565.35,781.85 L567.91,781.65 L570.45,781.38 L572.97,781.04 L575.47,780.61 L577.95,780.11 L580.42,779.52 L582.86,778.87 L585.29,778.13 L587.70,777.32 L590.09,776.43 L592.46,775.46 L594.81,774.41 L597.14,773.29 L599.44,772.10 L601.67,770.85 L603.84,769.54 L605.95,768.17 L608.00,766.75 L609.99,765.26 L611.91,763.72 L613.78,762.12 L615.58,760.46 L617.33,758.74 L619.01,756.96 L620.63,755.12 L622.19,753.23 L623.69,751.27 L625.13,749.26 L626.38,747.40 L627.57,745.49 L628.71,743.53 L629.81,741.51 L630.85,739.43 L631.85,737.31 L632.80,735.12 L633.69,732.89 L634.54,730.60 L635.34,728.25 L636.09,725.86 L636.79,723.41 L637.44,720.90 L638.05,718.34 L638.60,715.73 L639.11,713.02 L639.58,710.19 L640.02,707.23 L640.43,704.13 L640.80,700.91 L641.13,697.56 L641.43,694.08 L641.70,690.47 L641.93,686.73 L642.12,682.87 L642.28,678.87 L642.40,674.75 L642.49,670.49 L642.54,666.11 L642.56,661.60 L642.56,584.20 L642.56,583.38 L642.56,582.38 L642.56,569.63 L642.56,564.16 L642.56,423.95 L642.56,417.62 L642.56,224.33 L642.56,218.00 L602.81,218.00 L601.90,218.00 L561.81,218.00 L522.73,218.00 L406.55,527.99 L404.44,527.99 L274.53,218.00 L184.22,218.00 L184.22,222.22Z\" fill=\"currentColor\" fill-rule=\"evenodd\"/><\/svg>";             // the MJJP monogram (inline SVG): splash, header, every page title
 const monoAs = cls => MONO.replace('class="sp-mono"', 'class="'+cls+'"');
 const K = { me:"fftour.me.v1", ov:"fftour.override.v1", edit:"fftour.lastEdit", pub:"fftour.lastPublish",
@@ -310,6 +320,10 @@ function rebuild(){
   let ov=null;
   if (!READONLY){ try{ ov=JSON.parse(lsGet(K.ov)||"null"); }catch(e){} }
   DOC = (ov && Array.isArray(ov.tours)) ? ov : merge(BASE_DOC, PUB);
+  if (ov && Array.isArray(ov.tours)){
+    const have=new Set(DOC.tours.map(t=>t.id)), gone=new Set(DOC.deleted||[]);
+    (BASE_DOC.tours||[]).forEach(t=>{ if(!have.has(t.id)&&!gone.has(t.id)) DOC.tours.push(clone(t)); });
+  }
   if (!DOC.next) DOC.next = clone(CFG.next||{});
   DOC.tours.sort((a,b)=>String(a.start||"").localeCompare(String(b.start||"")) || a.id.localeCompare(b.id));
 }
@@ -336,7 +350,10 @@ function tourIds(t){
 }
 const scored = r => Object.values(r.pts||{}).filter(isNum).length;
 const played = t => (t.rounds||[]).some(r=>scored(r)>=2);
+/* a tour with no scorecards, only the results (e.g. from the WhatsApp chat) */
+const resultOnly = t => !played(t) && t.status==="done" && Array.isArray(t.winner) && t.winner.length>0;
 function tourDone(t){
+  if (resultOnly(t)) return true;
   if (!played(t)) return false;
   if (t.status==="done") return true;
   if (t.status==="live") return false;
@@ -419,8 +436,16 @@ function careers(){
   const get=id=>C[id]||(C[id]={id,tours:0,wins:0,shared:0,second:0,spoons:0,rounds:0,pts:0,best:null,worst:null,
     rwins:0,pw:0,pl:0,ph:0,ld:0,np:0,money:0,moneyTours:0,haz:0,hazR:0,form:[],ranks:[],winList:[]});
   for (const t of DOC.tours){
-    if (!played(t)) continue;
-    const s=standing(t), W=winners(t), sp=spoon(t), fin=tourDone(t);
+    if (!played(t) && !resultOnly(t)) continue;
+    const s=played(t)?standing(t):[], W=winners(t), sp=spoon(t), fin=tourDone(t);
+    if (resultOnly(t)){
+      const RU=t.runnerUp||[];
+      tourIds(t).forEach(id=>{ const c=get(id); c.tours++;
+        if (W.includes(id)){ c.wins++; if(W.length>1) c.shared++; c.winList.push(t.id); c.ranks.push({t:t.id,pos:{n:1,eq:W.length>1},of:tourIds(t).length}); }
+        else if (RU.includes(id)){ c.second++; c.ranks.push({t:t.id,pos:{n:2,eq:false},of:tourIds(t).length}); }
+        if ((t.pairsWinners||[]).includes(id)) c.pairsTitles=(c.pairsTitles||0)+1;
+      });
+    }
     s.forEach((r,i)=>{
       const c=get(r.id); c.tours++;
       if (fin){
@@ -483,7 +508,7 @@ function pick(list, seed){
   return order[dayNo()%order.length];
 }
 function roastsFor(id){
-  const c=car(id); if(!c||!c.rounds) return [];
+  const c=car(id); if(!c||!c.tours) return [];
   const n=nm(id), all=Object.values(careers()).filter(x=>x.rounds>=3 && !P(x.id).guest);
   const out=[]; const add=(ok,s)=>{ if(ok) out.push(s); };
   const others=all.filter(x=>x.id!==id);
@@ -516,6 +541,7 @@ function roastsFor(id){
     if (tot>=4 && r.l>=r.w+2) out.push(`Lost ${r.l} of ${tot} rounds to ${nm(o.id)}. That isn't a rivalry, it's a subscription.`);
     if (tot>=4 && r.w>=r.l+2) out.push(`Beaten ${nm(o.id)} in ${r.w} of ${tot} rounds. ${nm(o.id)} has stopped bringing it up.`);
   });
+  DOC.tours.forEach(t=>((t.lore||{})[id]||[]).forEach(x=>out.push(x)));
   const lt=lastDone();
   if (lt){
     const W=winners(lt);
@@ -561,7 +587,7 @@ function vHome(){
     const W=winners(lt), s=standing(lt), top=s.find(r=>r.id===W[0])||s[0];
     h+=`<div class="plaque"><div class="plq-in"><div class="plq-label">${esc(tourLabel(lt))} · Champion${W.length>1?"s":""}</div>
       <div class="plq-name">${W.map(id=>esc(nm(id))).join(" &amp; ")}</div>
-      <div class="plq-score">${top.total} points over ${top.n} round${top.n===1?"":"s"}</div>
+      <div class="plq-score">${top?`${top.total} points over ${top.n} round${top.n===1?"":"s"}`:(lt.runnerUp||[]).length?`Runner-up: ${lt.runnerUp.map(nm).join(" & ")}`:""}</div>
       ${spoon(lt)?`<div class="plq-verdict">Wooden spoon: ${esc(nm(spoon(lt)))}</div>`:""}
       <div class="plq-sub">${esc(roastOf(W[0],"champ"))}</div></div></div>`;
   }
@@ -586,6 +612,7 @@ function vTour(){
   const s=standing(t), W=winners(t), sp=spoon(t), rs=t.rounds||[], fin=tourDone(t);
   let h=mast(t.alias||t.venue||"", tourLabel(t), [fmtRange(t.start,t.end), t.venue].filter(Boolean).join(" · "));
   if (t.format) h+=`<p class="note">${esc(t.format)}</p>`;
+  if (resultOnly(t)) return h+vResults(t);
   if (!played(t)){
     h+=sec("The fixtures","No scores in yet")+`<div class="lb">`+rs.map((r,i)=>`<div class="row" style="cursor:default"><div class="c-pos">${i+1}</div>
       <div class="c-name">${esc(r.course||"Course TBC")}<span class="c-meta">${esc([fmtDate(r.date),r.tee].filter(Boolean).join(" · "))}</span></div><div></div></div>`).join("")+`</div></div>`;
@@ -638,12 +665,32 @@ function vTour(){
   if (t.source) h+=`<p class="note" style="color:var(--faint)">From ${esc(t.source)}</p>`;
   return h;
 }
+function vResults(t){
+  const W=winners(t), RU=t.runnerUp||[], PW=t.pairsWinners||[];
+  let h=sec("The results","No scorecards kept, so no points")+`<div class="lb">`
+    +W.map(id=>`<div class="row champ" onclick="goPlayer('${id}')"><div class="c-pos">1${W.length>1?"=":""}</div><div class="c-name">${esc(nm(id))}<span class="rtag rtag-gold">Champion</span><span class="c-meta">Singles winner</span></div><div></div></div>`).join("")
+    +RU.map(id=>`<div class="row" onclick="goPlayer('${id}')"><div class="c-pos">2</div><div class="c-name">${esc(nm(id))}<span class="c-meta">Runner-up</span></div><div></div></div>`).join("")
+    +(PW.length?`<div class="row" style="cursor:default"><div class="c-pos">◆</div><div class="c-name">${PW.map(x=>esc(nm(x))).join(" &amp; ")}<span class="c-meta">Pairs winners</span></div><div></div></div>`:"")
+    +`</div>`;
+  if (W[0]) h+=`<div class="quip">${esc(((t.lore||{})[W[0]]||[])[0]||roastOf(W[0],"tour"+t.id))}</div>`;
+  h+=`</div>`;
+  const cards=(t.results||[]).map(g=>`<div class="card"><div class="card-h">${esc(g.title)}</div>${g.sub?`<div class="card-s">${esc(g.sub)}</div>`:""}
+    <div class="card-s" style="font-size:13px;color:var(--ink)">${(g.rows||[]).map(([id,v,m])=>`<b>${esc(nm(id))}</b> ${esc(v)}${m?` <span style="color:var(--mut)">${esc(m)}</span>`:""}`).join("<br>")}</div></div>`).join("");
+  if (cards) h+=sec("The side games","As reported")+`<div class="grid2">${cards}</div></div>`;
+  const rs=t.rounds||[];
+  if (rs.length) h+=sec("The courses","")+`<div class="lb">`+rs.map((r,i)=>`<div class="row" style="cursor:default"><div class="c-pos">${i+1}</div>
+      <div class="c-name">${esc(r.course||"Course TBC")}<span class="c-meta">${esc([fmtDate(r.date),r.tee].filter(Boolean).join(" · "))}</span></div><div></div></div>`).join("")+`</div></div>`;
+  if (t.notes) h+=`<p class="note">${esc(t.notes)}</p>`;
+  if (t.source) h+=`<p class="note" style="color:var(--faint)">From ${esc(t.source)}</p>`;
+  return h;
+}
 function vPlayers(){
-  const ids=DOC.players.map(p=>p.id).filter(id=>car(id));
+  const ids=DOC.players.map(p=>p.id).filter(id=>car(id)&&car(id).tours);
   if (!ids.length) return `<div class="empty">No rounds on record yet.</div>`;
   if (!ids.includes(curPlayer)) curPlayer=ids[0];
   const id=curPlayer, c=car(id), p=P(id);
   let h=`<div class="pp">${ids.map(x=>`<button class="${x===id?"on":""}" onclick="goPlayer('${x}')">${esc(nm(x))}</button>`).join("")}</div>`;
+  h+=portrait(id);
   h+=mast(p.guest?"Guest":"Player", p.name, [p.nick&&p.nick!==p.name?"“"+p.nick+"”":"", p.hcp!=null?"Handicap "+p.hcp:""].filter(Boolean).join(" · "));
   h+=`<div class="quart"><div class="q"><b>${c.wins}</b><span>Titles</span></div><div class="q"><b>${c.tours}</b><span>Tours</span></div>
      <div class="q"><b>${f1(c.avg)}</b><span>Pts / round</span></div><div class="q"><b>${c.rwins}</b><span>Rounds won</span></div></div>`;
@@ -651,13 +698,16 @@ function vPlayers(){
   const cards=[];
   if (c.best) cards.push(["Best round", `${c.best.v} points`, `${c.best.course}, ${tourLabel(DOC.tours.find(t=>t.id===c.best.t)||{})}`]);
   if (c.worst) cards.push(["Worst round", `${c.worst.v} points`, `${c.worst.course}, ${tourLabel(DOC.tours.find(t=>t.id===c.worst.t)||{})}`]);
-  if (c.pw+c.pl+c.ph) cards.push(["Pairs matchplay", `${c.pw} won · ${c.pl} lost · ${c.ph} halved`, ""]);
+  if (c.pw+c.pl+c.ph) cards.push(["Pairs matchplay", `${c.pw} won · ${c.pl} lost · ${c.ph} halved`, c.pairsTitles?`plus the pairs title in ${DOC.tours.filter(t=>(t.pairsWinners||[]).includes(id)).map(tourLabel).join(", ")}`:""]);
+  else if (c.pairsTitles) cards.push(["Pairs", `${c.pairsTitles} pairs title${c.pairsTitles>1?"s":""}`, ""]);
   cards.push(["Prizes", `${c.ld} longest drive${c.ld===1?"":"s"} · ${c.np} nearest the pin`, ""]);
   if (c.moneyTours) cards.push(["The ledger", money(c.money), `over ${c.moneyTours} tour${c.moneyTours===1?"":"s"} with bets recorded`]);
   cards.push(["Finishes", c.ranks.map(r=>placeTxt(r.pos,true)).join(" · ")||"–", c.spoons?`${c.spoons} wooden spoon${c.spoons>1?"s":""}`:"No wooden spoons"]);
   h+=sec("The record","")+`<div class="grid2">`+cards.map(([a,b,s])=>`<div class="card"><div class="card-h">${esc(a)}</div><div class="card-b">${esc(b)}</div>${s?`<div class="card-s">${esc(s)}</div>`:""}</div>`).join("")+`</div></div>`;
   // tour by tour
-  const rows=DOC.tours.filter(t=>tourIds(t).includes(id)&&played(t)).map(t=>{
+  const rows=DOC.tours.filter(t=>tourIds(t).includes(id)&&(played(t)||resultOnly(t))).map(t=>{
+    if (resultOnly(t)){ const pl=(t.winner||[]).includes(id)?"1st":(t.runnerUp||[]).includes(id)?"2nd":"–";
+      return `<tr><td class="nm">${esc(tourLabel(t))}</td><td>${pl} of ${tourIds(t).length}</td><td>–</td><td>–</td><td>–</td></tr>`; }
     const s=standing(t), i=s.findIndex(r=>r.id===id), r=s[i];
     return `<tr><td class="nm">${esc(tourLabel(t))}</td><td>${tourDone(t)?placeTxt(placeOf(t,s,i),true):ordinal(i+1)} of ${s.length}</td><td>${r.total}</td><td>${f1(r.avg)}</td><td>${t.money&&isNum(t.money[id])?money(t.money[id],t.currency):"–"}</td></tr>`;
   }).join("");
@@ -669,6 +719,17 @@ function vPlayers(){
   const more=roastsFor(id).filter(x=>x!==roastOf(id,"bio"));
   if (more.length) h+=sec("Ammunition","For use at dinner")+more.slice(0,4).map(x=>`<div class="quip">${esc(x)}</div>`).join("")+`</div>`;
   return h;
+}
+/* the picture at the top of a Player page; initials until one arrives */
+function portrait(id){
+  const q=PORTRAITS[id], p=P(id);
+  if (!q){
+    const ini=(p.name||id).split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
+    return `<div class="pt"><div class="pt-ini">${esc(ini)}</div></div>`;
+  }
+  const still=PORT_BASE+q.f+"?v="+q.s;
+  if (q.v) return `<div class="pt"><video class="pt-img" src="${PORT_BASE+id}.mp4?v=${q.v}" poster="${still}" muted playsinline autoplay preload="auto"></video></div>`;
+  return `<div class="pt"><img class="pt-img" src="${still}" alt="${esc(p.name)}"></div>`;
 }
 const ordinal = n => n+(["th","st","nd","rd"][((n%100)-20)%10]||["th","st","nd","rd"][n%100]||"th");
 function vH2H(){
@@ -698,7 +759,7 @@ function vRecords(){
   for (const t of DOC.tours){
     (t.rounds||[]).forEach(r=>Object.entries(r.pts||{}).forEach(([id,v])=>{ if(!isNum(v)) return;
       if(!hi||v>hi.v) hi={v,id,t,r}; if(!lo||v<lo.v) lo={v,id,t,r}; }));
-    if (!tourDone(t)) continue;
+    if (!tourDone(t) || resultOnly(t)) continue;
     const s=standing(t);
     s.forEach(r=>{ if(r.n>=2 && (!bestT||r.avg>bestT.avg)) bestT={...r,t}; });
     if (s.length>1){ const m=s[0].total-s[1].total;
@@ -727,7 +788,7 @@ function vHonours(){
   let h=mast("Roll of honour","Honours","");
   const rows=DOC.tours.slice().reverse().map(t=>{
     const W=winners(t), sp=spoon(t);
-    const res=!played(t)?`<span class="c-meta">${tourDone(t)?"":"To come"}</span>`:!tourDone(t)?`<span class="c-meta">In progress</span>`:
+    const res=resultOnly(t)?`<span class="c-meta">Runner-up: ${(t.runnerUp||[]).map(x=>esc(nm(x))).join(" &amp; ")||"–"}</span>`:!played(t)?`<span class="c-meta">${tourDone(t)?"":"To come"}</span>`:!tourDone(t)?`<span class="c-meta">In progress</span>`:
       `<span class="c-meta">Spoon: ${sp?esc(nm(sp)):"–"}</span>`;
     return `<div class="row${W.length?" champ":""}" onclick="setTour('${t.id}',true)"><div class="c-pos" style="font-size:12px">${esc(tourYear(t))}</div>
       <div class="c-name">${esc(tourLabel(t))}${res}</div><div class="c-tot" style="font-size:17px">${W.map(id=>esc(nm(id))).join(" &amp; ")||"–"}</div></div>`;
